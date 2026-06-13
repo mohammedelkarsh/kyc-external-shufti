@@ -18,6 +18,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Checkout kyc-ai/laravel
+        uses: actions/checkout@v4
+        with:
+          repository: mohammedelkarsh/laravel-kyc-ai
+          path: laravel-kyc-ai
+          ref: v1.1.0
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -25,13 +32,11 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, sqlite, pdo_sqlite, intl
           coverage: none
 
-      - name: Use path kyc-ai/laravel when developing in monorepo
+      - name: Configure path dependency
         run: |
-          if [ -d "../laravel-kyc-ai" ]; then
-            composer config repositories.kyc-ai path ../laravel-kyc-ai
-            composer config minimum-stability dev
-            composer config prefer-stable true
-          fi
+          composer config repositories.kyc-ai path ./laravel-kyc-ai
+          composer config minimum-stability dev
+          composer config prefer-stable true
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-interaction --no-progress

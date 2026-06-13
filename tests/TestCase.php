@@ -22,7 +22,7 @@ abstract class TestCase extends Orchestra
 
     protected function defineEnvironment($app): void
     {
-        $app['config']->set('kyc', require dirname(__DIR__, 2).'/laravel-kyc-ai/config/kyc.php');
+        $app['config']->set('kyc', require $this->kycConfigPath());
         $app['config']->set('shufti', require dirname(__DIR__).'/config/shufti.php');
         $app['config']->set('app.key', 'base64:'.base64_encode(str_repeat('a', 32)));
         $app['config']->set('kyc.extraction.default', 'fake');
@@ -54,5 +54,21 @@ abstract class TestCase extends Orchestra
         $provider = new ShuftiServiceProvider($this->app);
         $provider->register();
         $provider->boot();
+    }
+
+    private function kycConfigPath(): string
+    {
+        $paths = [
+            dirname(__DIR__, 2).'/vendor/kyc-ai/laravel/config/kyc.php',
+            dirname(__DIR__, 2).'/../laravel-kyc-ai/config/kyc.php',
+        ];
+
+        foreach ($paths as $path) {
+            if (is_file($path)) {
+                return $path;
+            }
+        }
+
+        throw new \RuntimeException('Unable to locate kyc-ai/laravel config. Run composer install.');
     }
 }
