@@ -1,0 +1,13 @@
+{
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../laravel-kyc-ai"
+        }
+    ],
+    "require": {
+        "kyc-ai/laravel": "@dev"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
