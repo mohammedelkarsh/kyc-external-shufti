@@ -39,7 +39,7 @@ jobs:
           composer config prefer-stable true
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-interaction --no-progress
+        run: composer update --prefer-dist --no-interaction --no-progress --with-all-dependencies
 
       - name: Run PHPUnit
         run: composer test
