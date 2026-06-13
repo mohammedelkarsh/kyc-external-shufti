@@ -58,10 +58,11 @@ abstract class TestCase extends Orchestra
 
     private function kycConfigPath(): string
     {
+        $root = dirname(__DIR__);
         $paths = [
-            dirname(__DIR__, 2).'/vendor/kyc-ai/laravel/config/kyc.php',
-            dirname(__DIR__, 2).'/laravel-kyc-ai/config/kyc.php',
-            dirname(__DIR__, 2).'/../laravel-kyc-ai/config/kyc.php',
+            $root.'/vendor/kyc-ai/laravel/config/kyc.php',
+            $root.'/laravel-kyc-ai/config/kyc.php',
+            dirname($root).'/laravel-kyc-ai/config/kyc.php',
         ];
 
         foreach ($paths as $path) {
