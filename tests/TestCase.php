@@ -60,6 +60,7 @@ abstract class TestCase extends Orchestra
     {
         $paths = [
             dirname(__DIR__, 2).'/vendor/kyc-ai/laravel/config/kyc.php',
+            dirname(__DIR__, 2).'/laravel-kyc-ai/config/kyc.php',
             dirname(__DIR__, 2).'/../laravel-kyc-ai/config/kyc.php',
         ];
 
