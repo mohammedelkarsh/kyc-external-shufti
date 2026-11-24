@@ -8,3 +8,5 @@ composer.local.json
 .env
 .DS_Store
 Thumbs.db
+# Ad-hoc GraphQL fetch scratch (local only)
+.github/gql-fetch-*.json
